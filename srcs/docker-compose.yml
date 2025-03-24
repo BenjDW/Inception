@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    volumes:
+      - mariadb_v:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - backend
+    restart: always
+
+  volumes:
+    mariadb_v:
+      driver: local
+      driver_opts:
+        device: /home/bde-wits/data/maria
+        type: none
+        o: bind
+
+  networks:
+    backend:
+      driver: bridge
