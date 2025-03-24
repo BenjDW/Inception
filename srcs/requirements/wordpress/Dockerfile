@@ -20,3 +20,8 @@ RUN mkdir -p /srv/www && chown www-data: /srv/www
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
     && mv wp-cli.phar /usr/local/bin/wp
+
+RUN echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf && \
+a2enconf fqdn
+
+CMD ["apache2ctl", "-D", "FOREGROUND"]
