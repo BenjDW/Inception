@@ -18,7 +18,6 @@ COPY init.sql /docker-entrypoint-initdb.d/
 
 VOLUME "/var/lib/mysql"
 
-//port
 EXPOSE 3306 
 
 # exec le script
