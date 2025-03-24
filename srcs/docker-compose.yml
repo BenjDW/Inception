@@ -1,4 +1,4 @@
-version: '3'
+# version: '3'
 
 services:
   mariadb:
@@ -7,19 +7,38 @@ services:
     volumes:
       - mariadb_v:/var/lib/mysql
     env_file:
-      - .env
+      - ./requirements/.env
     networks:
       - backend
     restart: always
 
-  volumes:
-    mariadb_v:
-      driver: local
-      driver_opts:
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    volumes:
+      - wordpress_v:/var/lib/html
+    env_file:
+      - ./requirements/.env
+    depends_on:
+      - mariadb
+    networks:
+      - backend
+    restart: always
+
+volumes:
+  mariadb_v:
+    driver: local
+    driver_opts:
         device: /home/bde-wits/data/maria
         type: none
         o: bind
+  wordpress_v:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/suliak/data/wordpress
+      o: bind
 
-  networks:
-    backend:
-      driver: bridge
+networks:
+  backend:
+    driver: bridge
