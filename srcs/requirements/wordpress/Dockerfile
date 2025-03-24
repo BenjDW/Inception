@@ -13,6 +13,7 @@ php-mbstring \
 php-mysql \
 php-xml \
 php-zip \
+php-fpm \
 curl
 
 RUN mkdir -p /srv/www && chown www-data: /srv/www 
