@@ -35,16 +35,16 @@ volumes:
   mariadb_v:
     driver: local
     driver_opts:
-        # device: /home/bde-wits/data/maria
-      device: /home/suliak/data/maria
+      device: /home/bde-wits/data/maria
+      # device: /home/suliak/data/maria
       type: none
       o: bind
   wordpress_v:
     driver: local
     driver_opts:
       type: none
-      # device: /home/bde-wits/data/wordpress
-      device: /home/suliak/data/wordpress
+      device: /home/bde-wits/data/wordpress
+      # device: /home/suliak/data/wordpress
       o: bind
 
 networks:

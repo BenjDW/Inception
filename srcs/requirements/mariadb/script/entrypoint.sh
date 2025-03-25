@@ -10,9 +10,9 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
         # On lance mariadbd en background sans contrainte de password
         mariadbd --skip-networking --user=mysql &
         pid="$!"
-        sleep 5
+        sleep 30
         # On exécute le script SQL
-        mysql -u root < /docker-entrypoint-initdb.d/init.sql
+        mysql --user=root --password=rootpassword < /docker-entrypoint-initdb.d/init.sql
         kill "$pid"
     fi
 fi
