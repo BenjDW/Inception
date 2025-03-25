@@ -24,6 +24,8 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf && \
 a2enconf fqdn
 
+EXPOSE 3306
+
 # sets the apache2ctl in foreground to not finish the docker
 CMD ["apache2ctl", "-D", "FOREGROUND"]
 
