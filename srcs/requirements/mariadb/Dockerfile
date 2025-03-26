@@ -1,17 +1,18 @@
 FROM debian:bookworm
 
-RUN apt update && apt install -y mariadb-server
+# Mettre à jour les packages et installer MariaDB (serveur) 
+RUN apt-get update -y && apt-get upgrade -y \
+ && apt-get install -y mariadb-server
 
-#script
-RUN mkdir -p /var/run/mysqld && chown -R mysql:mysql /var/run/mysqld
 
-COPY init.sql /docker-entrypoint-initdb.d/init.sql
+RUN mkdir -p /var/lib/mysql/sys /var/lib/mysql/performance_schema
+
+# Copier le script d'initialisation de la base de données dans l'image
 COPY ./script/entrypoint.sh /usr/local/bin/entrypoint.sh
-COPY ./conf/mysqld.conf /etc/mysql/mariadb.conf.d/50-server.cnf
 
+# Donner les permissions d'exécution au script
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-EXPOSE 3306
-
+# Lancer le script d'initialisation lors du démarrage du conteneur
+# et s'assurer que le processus MariaDB reste au premier plan (PID 1)
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["mysqld"]
