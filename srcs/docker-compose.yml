@@ -39,7 +39,6 @@ volumes:
       device: /home/suliak/data/maria
       type: none
       o: bind
-      device: ${PWD}/database
   wordpress_v:
     driver: local
     driver_opts:
