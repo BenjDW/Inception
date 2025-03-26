@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+echo "====> before script mariadb..."
 if [ ! -d "/var/lib/mysql/mysql" ]; then
     echo "====> MariaDB initialization..."
     mariadb-install-db --user=mysql --datadir=/var/lib/mysql --skip-test-db
@@ -19,3 +20,5 @@ fi
 
 echo "====> Starting mariadb..."
 exec mariadbd --user=mysql
+#les conditions --user=mysql
+#ses surement la premiere qui trigger le warning ignore?
