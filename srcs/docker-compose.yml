@@ -1,4 +1,4 @@
-# version: '3.8'
+version: '3'
 
 services:
   mariadb:
@@ -30,6 +30,21 @@ services:
     networks:
       - backend
     restart: always
+
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    volumes:
+      - wordpress:/var/www/wordpress
+    env_file: ./requirements/.env
+    depends_on:         # Nouvelle ligne, indiquant de ne pas démarrer NGINX tant que WordPress n'a pas démarré.
+      - wordpress
+#   dockerfile: Dockerfile
+    ports:
+      - "443:443" # on indique le port qui sera exposé a la machine locale
+    networks:
+      - inception
+    restart: on-failure 		# Ici nous changeons, le container redémarrera uniquement en cas de crash.
 
 volumes:
   mariadb_v:
