@@ -1,7 +1,7 @@
 FROM debian:bookworm
 
 #apt upgrade // install les update
-RUN apt update && apt install -y apache2 \
+RUN apt update && apt upgrade && apt install -y apache2 \
 ghostscript \
 libapache2-mod-php \
 php \
@@ -17,7 +17,8 @@ php-zip \
 php-fpm \
 mariadb-client \
 iputils-ping \
-curl
+curl \
+apt-get -y install wget
 
 RUN mkdir -p /srv/www && chown www-data: /srv/www 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
