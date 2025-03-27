@@ -1,5 +1,6 @@
 FROM debian:bookworm
 
+#apt upgrade // install les update
 RUN apt update && apt install -y apache2 \
 ghostscript \
 libapache2-mod-php \
