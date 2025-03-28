@@ -10,7 +10,7 @@ RUN mkdir -p /etc/nginx/ssl
 RUN apt install openssl -y
 
 #crée la clé securisé enter et sortie
-RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=PO/L=Perpignan/O=42/OU=42/CN=bde-wits.42.fr/UID=bde-wits"
+RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=PO/L=Perpignan/O=42/OU=42/CN=bde-wits42.fr/UID=bde-wits"
 
 # la ou se trouve les fichier de config
 RUN mkdir -p /var/run/nginx
