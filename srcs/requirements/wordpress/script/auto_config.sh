@@ -8,6 +8,6 @@ wp config create --allow-root \
 	--dbpass=$SQL_PASSWORD \
 	--dbhost=mariadb:3306 --path='/var/www/wordpress'
 
-wp core install --url='https://bde-wits42.fr' --title='Blog Title' --admin_user='master' --admin_password='password' --admin_email='email@domain.com'
+wp core install --allow-root --url='https://bde-wits42.fr' --title='Blog Title' --admin_user='master' --admin_password='password' --admin_email='email@domain.com'
 
 # wp user create

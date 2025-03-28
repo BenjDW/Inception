@@ -35,26 +35,7 @@ COPY conf/php.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY ./script/auto_config.sh /usr/local/bin/auto_config.sh
 RUN chmod 777 /usr/local/bin/auto_config.sh
 
-EXPOSE 3306
-#port 3306 mariadb-wordpress
 EXPOSE 9000
 #port 9000 nginx-wordpress
 ENTRYPOINT ["/usr/local/bin/auto_config.sh"]
 CMD ["/usr/sbin/php-fpm7.3" "-F"]
-# CMD ["php-fpm7.3", "-F"]
-
-# RUN mkdir -p /srv/www && chown www-data: /srv/www 
-# RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-#     && chmod +x wp-cli.phar \
-#     && mv wp-cli.phar /usr/local/bin/wp
-
-# RUN echo "ServerName localhost" | tee /etc/apache2/conf-available/fqdn.conf && \
-# a2enconf fqdn
-
-# RUN wp core download --path=/srv/www --allow-root
-# COPY ./script/credentials_env.sh usr/local/bin/credentials_env.sh
-# RUN chmod +x /usr/local/bin/credentials_env.sh
-
-# ENTRYPOINT ["/usr/local/bin/credentials_env.sh"]
-# sets the apache2ctl in foreground to not finish the docker
-# CMD ["apache2ctl", "-D", "FOREGROUND"]
