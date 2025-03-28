@@ -1,4 +1,4 @@
-version: '3'
+# version: '3'
 
 services:
   mariadb:
@@ -35,7 +35,7 @@ services:
     container_name: nginx
     build: ./requirements/nginx
     volumes:
-      - wordpress:/var/www/wordpress
+      - nginx:/var/www/html
     env_file: ./requirements/.env
     depends_on:         # Nouvelle ligne, indiquant de ne pas démarrer NGINX tant que WordPress n'a pas démarré.
       - wordpress
@@ -43,7 +43,7 @@ services:
     ports:
       - "443:443" # on indique le port qui sera exposé a la machine locale
     networks:
-      - inception
+      - backend
     restart: on-failure 		# Ici nous changeons, le container redémarrera uniquement en cas de crash.
 
 volumes:
@@ -60,6 +60,12 @@ volumes:
       type: none
       device: /home/bde-wits/data/wordpress
       # device: /home/suliak/data/wordpress
+      o: bind
+  nginx:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/bde-wits/data/nginx
       o: bind
 
 networks:

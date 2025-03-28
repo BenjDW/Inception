@@ -1,13 +1,13 @@
 FROM debian:bookworm
 
 # -y = imput yes
-RUN apt update && apt upgrade && apt install nginx -y \
-apt install curl -y
+RUN apt update && apt upgrade -y && apt install nginx -y
+RUN apt install curl -y
 
 # crée le dossier pour le tsl certificat sécurité
 # openssl gere les certificat
-RUN mkdir -p /etc/nginx/ssl \
-apt install OpenSSL -y
+RUN mkdir -p /etc/nginx/ssl
+RUN apt install openssl -y
 
 #crée la clé securisé enter et sortie
 RUN openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=PO/L=Perpignan/O=42/OU=42/CN=bde-wits.42.fr/UID=bde-wits"

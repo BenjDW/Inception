@@ -36,6 +36,9 @@ COPY ./script/auto_config.sh /usr/local/bin/auto_config.sh
 RUN chmod 777 /usr/local/bin/auto_config.sh
 
 EXPOSE 3306
+#port 3306 mariadb-wordpress
+EXPOSE 9000
+#port 9000 nginx-wordpress
 ENTRYPOINT ["/usr/local/bin/auto_config.sh"]
 CMD ["/usr/sbin/php-fpm7.3" "-F"]
 # CMD ["php-fpm7.3", "-F"]
