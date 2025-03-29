@@ -6,7 +6,7 @@ until mysqladmin ping -h"mariadb" --silent; do
     sleep 2
 done
 
-cd /var/www/wordpress
+cd /var/www/html
 
 if [ -f wp-config.php ]; then
     echo "WordPress is already set up."
@@ -18,7 +18,7 @@ else
         --dbuser="${SQL_USER}" \
         --dbpass="${SQL_PASSWORD}" \
         --dbhost="mariadb:3306" \
-        --path="/var/www/wordpress"
+        --path="/var/www/html"
 
     if ! wp core is-installed --allow-root; then
         wp core install --allow-root \
@@ -27,7 +27,7 @@ else
             --admin_user="master" \
             --admin_password="password" \
             --admin_email="email@domain.com" \
-            --path="/var/www/wordpress"
+            --path="/var/www/html"
     fi
 fi
 
