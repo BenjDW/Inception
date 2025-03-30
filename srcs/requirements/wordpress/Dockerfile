@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     php8.2-mbstring \
     php8.2-xml \
     php8.2-zip \
+	nano \
     && apt-get clean
 
 # 2) Créer un symlink "php-fpm" -> "php-fpm8.2" pour simplifier le lancement

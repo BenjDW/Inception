@@ -19,10 +19,17 @@ else
         --dbpass="${SQL_PASSWORD}" \
         --dbhost="mariadb:3306" \
         --path="/var/www/html"
+    if ! grep -q "define('WP_HOME'" "/var/www/html/wp-config.php"; then
+        echo "Ajout des constantes WP_HOME et WP_SITEURL au début de wp-config.php..."
+        # Insérer les définitions WP_HOME et WP_SITEURL après "<?php"
+        sed -i "1a\define('WP_HOME', 'https://bde-wits.42.fr');\ndefine('WP_SITEURL', 'https://bde-wits.42.fr');\n" "/var/www/html/wp-config.php"
+    else
+        echo "Les constantes WP_HOME et WP_SITEURL sont déjà définies."
+    fi
 
     if ! wp core is-installed --allow-root; then
         wp core install --allow-root \
-            --url="localhost" \
+            --url="https://bde-wits.42.fr" \
             --title="Blog Title" \
             --admin_user="master" \
             --admin_password="password" \
