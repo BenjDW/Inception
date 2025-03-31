@@ -35,6 +35,9 @@ else
             --admin_password="password" \
             --admin_email="email@domain.com" \
             --path="/var/www/html"
+# cree le second user a test
+		wp user create simple_user basic@example.com --role=editor --user_pass=simple --allow-root
+		wp user list
     fi
 fi
 
