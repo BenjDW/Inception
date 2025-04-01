@@ -27,7 +27,7 @@ else
         echo "Les constantes WP_HOME et WP_SITEURL sont déjà définies."
     fi
 
-    if ! wp core is-installed --allow-root; then
+    # if ! wp core is-installed --allow-root; then
         wp core install --allow-root \
             --url="https://bde-wits.42.fr" \
             --title="Blog Title" \
@@ -36,9 +36,8 @@ else
             --admin_email="email@domain.com" \
             --path="/var/www/html"
 # cree le second user a test
-		wp user create simple_user basic@example.com --role=editor --user_pass=simple --allow-root
-		wp user list
-    fi
+		wp user create "simple_user" "basic@example.com" --role=editor --user_pass="simple" --allow-root --path="/var/www/html"
+    # fi
 fi
 
 # Lancer PHP-FPM par le symlink
