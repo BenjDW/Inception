@@ -10,6 +10,7 @@ set -e
     # Ensuite, si init.sql existe, on l'exécute.
     if [ -f /docker-entrypoint-initdb.d/init.sql ]; then
         echo "====> Running custom init.sql..."
+		envsubst < /tmp/init.sql > /docker-entrypoint-initdb.d/init.sql
         # On lance mariadbd en background sans contrainte de password
         mariadbd --skip-networking --user=mysql &
         pid="$!"
