@@ -1,27 +1,20 @@
 FROM debian:bookworm
 
-# Installer nginx, openssl (et curl si nécessaire)
 RUN apt-get update && \
     apt-get install -y nginx openssl curl && \
     apt-get clean
 
-# Créer le dossier SSL
 RUN mkdir -p /etc/nginx/ssl
 
-# Générer un certificat auto-signé
 RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
     -out /etc/nginx/ssl/inception.crt \
     -keyout /etc/nginx/ssl/inception.key \
     -subj "/C=FR/ST=Occitanie/L=Perpignan/O=42/OU=42/CN=bde-wits.42.fr"
 
-# Créer le répertoire de PID/run
 RUN mkdir -p /run/nginx
 
-# Copier la configuration Nginx dans /etc/nginx/conf.d
-#   (attention à ton chemin local "conf/nginx.conf" -> "conf.d")
 COPY ./conf/nginx.conf /etc/nginx/conf.d
 
-# (Optionnel) Accès/permissions au dossier web
 RUN mkdir -p /var/www/html
 RUN chmod 755 /var/www/html && chown -R www-data:www-data /var/www/html
 
