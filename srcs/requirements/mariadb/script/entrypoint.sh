@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+rm -rf /var/lib/mysql/ib_logfile* /var/lib/mysql/ibdata1
 
     echo "====> MariaDB initialization..."
     mariadb-install-db --user=mysql --datadir=/var/lib/mysql --skip-test-db
