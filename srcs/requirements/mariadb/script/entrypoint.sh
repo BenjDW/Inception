@@ -1,6 +1,15 @@
 #!/bin/bash
 set -e
 
+if [ -d "/home/bde-wits/data/wordpress" ]; then \
+	echo "/home/bde-wits/data/wordpress already exists"; else \
+	sudo mkdir -p /home/bde-wits/data/wordpress; \
+fi
+
+if [ -d "/home/bde-wits/data/maria" ]; then \
+	echo "/home/bde-wits/data/maria already exists"; else \
+	sudo mkdir -p /home/bde-wits/data/maria; \
+fi
     echo "====> MariaDB initialization..."
     mariadb-install-db --user=mysql --datadir=/var/lib/mysql --skip-test-db
     if [ -f /docker-entrypoint-initdb.d/init.sql ]; then

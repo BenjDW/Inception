@@ -6,7 +6,7 @@
 #    By: bde-wits <bde-wits@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 06:57:40 by bde-wits          #+#    #+#              #
-#    Updated: 2025/04/02 07:33:08 by bde-wits         ###   ########.fr        #
+#    Updated: 2025/04/03 22:29:41 by bde-wits         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ down:
 	$(COMPOSE) down
 
 clean:
-	$(COMPOSE) down -v
+	$(COMPOSE) down -v --remove-orphans
 
 prune:
 	docker system prune -a --volumes -f
