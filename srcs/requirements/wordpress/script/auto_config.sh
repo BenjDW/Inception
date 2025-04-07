@@ -26,7 +26,7 @@ else
     fi
         wp core install --allow-root \
             --url="$WP_DOMAIN" \
-            --title="$Wp_TITLE" \
+            --title="$WP_TITLE" \
             --admin_user="$WP_ADMIN_USER" \
             --admin_password="$WP_ADMIN_MDP" \
             --admin_email="$WP_ADMIN_MAIL" \

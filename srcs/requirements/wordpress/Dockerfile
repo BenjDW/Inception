@@ -35,6 +35,7 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 COPY conf/php.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 COPY ./script/auto_config.sh /usr/local/bin/auto_config.sh
+RUN mkdir -p /run/php
 RUN chmod +x /usr/local/bin/auto_config.sh
 
 EXPOSE 9000

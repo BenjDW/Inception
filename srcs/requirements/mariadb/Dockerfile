@@ -2,7 +2,6 @@ FROM debian:bullseye
 
 RUN apt update && apt upgrade -y && apt install -y mariadb-server gettext
 
-#script
 RUN mkdir -p /var/run/mysqld && chown -R mysql:mysql /var/run/mysqld \
     && chown -R mysql:mysql /var/lib/mysql && chmod -R 777 /var/lib/mysql 
 
