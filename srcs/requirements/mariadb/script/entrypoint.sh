@@ -1,9 +1,10 @@
 #!/bin/bash
 set -e
-rm -rf /var/lib/mysql/ib_logfile* /var/lib/mysql/ibdata1
 
     echo "====> MariaDB initialization..."
-    mariadb-install-db --user=mysql --datadir=/var/lib/mysql --skip-test-db
+	if [ ! -d /var/lib/mysql/mysql ]; then
+		mariadb-install-db --user=mysql --datadir=/var/lib/mysql --skip-test-db
+	fi
     if [ -f /docker-entrypoint-initdb.d/init.sql ]; then
         echo "====> Running custom init.sql..."
 		envsubst < /tmp/init.sql > /docker-entrypoint-initdb.d/init.sql
