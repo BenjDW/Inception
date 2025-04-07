@@ -21,13 +21,12 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress
     volumes:
-      - wordpress_v:/var/www/wordpress
+      - wordpress_v:/var/www/html
     env_file:
       - ./requirements/.env
     depends_on:
       mariadb:
         condition: service_healthy
-    # On SUPPRIME la ligne ports: [ "9000:9000" ] pour empêcher l'exposition en externe
     networks:
       - backend
     restart: always
@@ -44,20 +43,20 @@ services:
       - "443:443"
     networks:
       - backend
-    restart: on-failure
+    restart: always
 
 volumes:
   mariadb_v:
     driver: local
     driver_opts:
-      device: /home/bde-wits/data/maria
+      device: /home/bdewits/data/mariadb
       type: none
       o: bind
   wordpress_v:
     driver: local
     driver_opts:
       type: none
-      device: /home/bde-wits/data/wordpress
+      device: /home/bdewits/data/wordpress
       o: bind
 
 networks:
